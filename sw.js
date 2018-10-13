@@ -1,6 +1,7 @@
 // Just to make sure the service worker is actually registered
 console.log('Service Worker: Registered!');
 
+// Files to cache
 const cacheFiles = [
     '/',
     '/index.html',
@@ -22,6 +23,7 @@ const cacheFiles = [
     '/img/10.jpg',
 ];
 
+// Event for installation of service worker
 self.addEventListener('install', function(e) {
     e.waitUntil(
         caches.open('v1').then(function(cache) {
@@ -30,6 +32,7 @@ self.addEventListener('install', function(e) {
     );
 });
 
+// Event for fetching event method
 self.addEventListener('fetch', function(e) {
     e.respondWith(
         caches.match(e.request).then(function(response) {
